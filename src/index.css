@@ -1,0 +1,518 @@
+/* Design System e Estilos Globais do Tactical Academy */
+
+:root {
+  /* Cores Principais (Tema Tático Escuro Obligatório) */
+  --bg-color: #111315;
+  --card-bg: #1A1D20;
+  --border-color: #2D3237;
+  
+  --accent-olive: #5B7053;
+  --accent-olive-hover: #738C6A;
+  --accent-olive-glow: rgba(91, 112, 83, 0.2);
+  --accent-olive-dim: #2C3527;
+  
+  --text-primary: #E3E6E8;
+  --text-secondary: #8E959E;
+  --text-muted: #5C6269;
+  
+  /* Estados do Sistema */
+  --color-alert: #F57C00;      /* Laranja */
+  --color-alert-glow: rgba(245, 124, 0, 0.15);
+  
+  --color-info: #0288D1;       /* Azul */
+  --color-info-glow: rgba(2, 136, 209, 0.15);
+  
+  --color-danger: #D32F2F;     /* Vermelho */
+  --color-danger-glow: rgba(211, 47, 47, 0.15);
+
+  --color-success: #4CAF50;    /* Verde Vibrante */
+  --color-success-glow: rgba(76, 175, 80, 0.15);
+
+  /* Fontes */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  
+  /* Layout & Espaçamento */
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --nav-height: 72px;
+}
+
+/* Reset e Configurações Mobile First */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  user-select: none; /* Evita seleção de texto acidental em navegação mobile */
+}
+
+/* Permitir seleção apenas em leituras teóricas importantes */
+.selectable {
+  user-select: text;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  max-width: 600px; /* Mantém proporção mobile no Desktop */
+  margin: 0 auto;
+  position: relative;
+  background-color: var(--bg-color);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 600px) {
+  #root {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* Layout Geral - Área de Conteúdo */
+main {
+  flex: 1;
+  padding: calc(16px + var(--safe-area-top)) 16px calc(16px + var(--nav-height) + var(--safe-area-bottom)) 16px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar - Estilo Militar Muted */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--accent-olive-dim);
+  padding-bottom: 8px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h1::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 1.25rem;
+  background-color: var(--accent-olive);
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--accent-olive);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* Elementos Estilizados Táticos (HUD) */
+.hud-mono {
+  font-family: var(--font-mono);
+}
+
+.hud-panel {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brackets Táticos nos Cantos dos Painéis */
+.hud-panel::before, .hud-panel::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--accent-olive);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.hud-panel::before {
+  top: 4px;
+  left: 4px;
+  border-right: none;
+  border-bottom: none;
+}
+.hud-panel::after {
+  bottom: 4px;
+  right: 4px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Scanner HUD scanline effect */
+.hud-panel-scan::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 4px, 3px 100%;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Botões do Sistema (Material Design 3 + HUD) */
+.btn-tactical {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--accent-olive-dim);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-olive);
+  border-radius: 4px;
+  padding: 0 16px;
+  height: 52px; /* Ideal para touch targets (56dp aprox) */
+  min-width: 120px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.btn-tactical:hover:not(:disabled) {
+  background-color: var(--accent-olive);
+  box-shadow: 0 0 12px var(--accent-olive-glow);
+}
+
+.btn-tactical:active:not(:disabled) {
+  transform: scale(0.98);
+  background-color: var(--accent-olive-hover);
+}
+
+.btn-tactical:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: var(--border-color);
+  background-color: transparent;
+}
+
+.btn-tactical-primary {
+  background-color: var(--accent-olive);
+  border-color: var(--accent-olive);
+}
+
+.btn-tactical-primary:hover:not(:disabled) {
+  background-color: var(--accent-olive-hover);
+  box-shadow: 0 0 16px var(--accent-olive-glow);
+}
+
+.btn-tactical-alert {
+  background-color: rgba(245, 124, 0, 0.1);
+  border-color: var(--color-alert);
+}
+.btn-tactical-alert:hover:not(:disabled) {
+  background-color: var(--color-alert);
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 0 12px var(--color-alert-glow);
+}
+
+.btn-tactical-danger {
+  background-color: rgba(211, 47, 47, 0.1);
+  border-color: var(--color-danger);
+}
+.btn-tactical-danger:hover:not(:disabled) {
+  background-color: var(--color-danger);
+  box-shadow: 0 0 12px var(--color-danger-glow);
+}
+
+/* Badges e Chips */
+.badge-tactical {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 2px;
+  background-color: var(--border-color);
+  color: var(--text-primary);
+  border: 1px solid transparent;
+  text-transform: uppercase;
+}
+
+.badge-tactical-olive {
+  background-color: var(--accent-olive-dim);
+  color: var(--text-primary);
+  border-color: var(--accent-olive);
+}
+
+.badge-tactical-alert {
+  background-color: var(--color-alert-glow);
+  color: var(--color-alert);
+  border-color: var(--color-alert);
+}
+
+.badge-tactical-info {
+  background-color: var(--color-info-glow);
+  color: var(--color-info);
+  border-color: var(--color-info);
+}
+
+.badge-tactical-danger {
+  background-color: var(--color-danger-glow);
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.badge-tactical-success {
+  background-color: var(--color-success-glow);
+  color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+/* Inputs táticos */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-olive);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.form-input {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 0 16px;
+  height: 52px;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent-olive);
+  box-shadow: 0 0 8px var(--accent-olive-glow);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.form-textarea {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 12px 16px;
+  border-radius: 4px;
+  width: 100%;
+  min-height: 120px;
+  outline: none;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--accent-olive);
+  box-shadow: 0 0 8px var(--accent-olive-glow);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Animações e Efeitos */
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.3; }
+}
+
+.glow-pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Accordion Component */
+.accordion-item {
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.accordion-header:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.accordion-icon {
+  transition: transform 0.2s ease;
+  color: var(--accent-olive);
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: 0 16px 16px 16px;
+  border-top: 1px solid var(--border-color);
+  background-color: rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 500px; }
+}
+
+/* Timeline Component */
+.timeline-container {
+  position: relative;
+  padding-left: 24px;
+  margin: 16px 0;
+  border-left: 2px dashed var(--accent-olive);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -31px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: 3px solid var(--accent-olive);
+}
+
+.timeline-item.active::before {
+  background-color: var(--accent-olive);
+  box-shadow: 0 0 8px var(--accent-olive);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-olive);
+  margin-bottom: 4px;
+}
+
+.timeline-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.timeline-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Custom Utilities for Diagrams */
+.diagram-container {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 16px;
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg-diagram {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.w-full { width: 100%; }
+.mt-16 { margin-top: 16px; }
+.mb-16 { margin-bottom: 16px; }

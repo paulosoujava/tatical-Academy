@@ -1,0 +1,31 @@
+{
+  "short_name": "TacticalAcad",
+  "name": "Tactical Academy",
+  "description": "Plataforma de estudos táticos, doutrina e consciência situacional para operadores.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#111315",
+  "theme_color": "#111315",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "pt-BR"
+}
