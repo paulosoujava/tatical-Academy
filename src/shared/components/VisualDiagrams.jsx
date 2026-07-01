@@ -332,25 +332,25 @@ export const SightPictureSimulator = () => {
         {/* SVG Drawing of target + sights */}
         <svg width="300" height="200" className="svg-diagram" style={{ backgroundColor: '#0A0C0E', border: '1px solid var(--border-color)', borderRadius: '4px' }}>
           {/* Target (Bullseye) */}
-          <circle cx="150" cy="100" r="45" fill="none" stroke="#2C3527" stroke-width="2" />
-          <circle cx="150" cy="100" r="30" fill="none" stroke="#2C3527" stroke-width="2" />
+          <circle cx="150" cy="100" r="45" fill="none" stroke="#2C3527" strokeWidth="2" />
+          <circle cx="150" cy="100" r="30" fill="none" stroke="#2C3527" strokeWidth="2" />
           <circle cx="150" cy="100" r="15" fill="#1C201A" />
           
           {/* Simulated Bullet Impact (Crimson dot) */}
           <circle cx={current.bulletX} cy={current.bulletY} r="6" fill="var(--color-danger)" opacity="0.8" className="glow-pulse" />
-          <line x1={current.bulletX - 12} y1={current.bulletY} x2={current.bulletX + 12} y2={current.bulletY} stroke="var(--color-danger)" stroke-width="1.5" opacity="0.8" />
-          <line x1={current.bulletX} y1={current.bulletY - 12} x2={current.bulletX} y2={current.bulletY + 12} stroke="var(--color-danger)" stroke-width="1.5" opacity="0.8" />
+          <line x1={current.bulletX - 12} y1={current.bulletY} x2={current.bulletX + 12} y2={current.bulletY} stroke="var(--color-danger)" strokeWidth="1.5" opacity="0.8" />
+          <line x1={current.bulletX} y1={current.bulletY - 12} x2={current.bulletX} y2={current.bulletY + 12} stroke="var(--color-danger)" strokeWidth="1.5" opacity="0.8" />
 
           {/* Rear Sight (Alça - static structure foreground) */}
           {/* Left Block */}
-          <path d="M 40 180 L 110 180 L 110 110 L 40 110 Z" fill="#202428" stroke="#3A3F45" stroke-width="1" />
+          <path d="M 40 180 L 110 180 L 110 110 L 40 110 Z" fill="#202428" stroke="#3A3F45" strokeWidth="1" />
           {/* Right Block */}
-          <path d="M 190 180 L 260 180 L 260 110 L 190 110 Z" fill="#202428" stroke="#3A3F45" stroke-width="1" />
+          <path d="M 190 180 L 260 180 L 260 110 L 190 110 Z" fill="#202428" stroke="#3A3F45" strokeWidth="1" />
           {/* Bottom Connector */}
           <rect x="110" y="150" width="80" height="30" fill="#202428" />
 
           {/* Front Sight (Massa - moving based on error) */}
-          <rect x={current.massaX - 10} y={current.massaY} width="20" height="45" fill="#5B7053" stroke="#829C79" stroke-width="1.5" />
+          <rect x={current.massaX - 10} y={current.massaY} width="20" height="45" fill="#5B7053" stroke="#829C79" strokeWidth="1.5" />
           {/* Fiber Optic Dot (Typical tactical front sight) */}
           <circle cx={current.massaX} cy={current.massaY + 10} r="3" fill="#4CAF50" />
         </svg>
